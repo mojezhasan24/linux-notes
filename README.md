@@ -31,3 +31,20 @@ linux-notes/
 ├── processes/
 ├── package-management/
 └── README.md
+```
+
+## Current Focus
+- Linux command line fundamentals
+- Networking tools
+- Bash scripting
+- Security-related utilities
+
+## Tools Used
+- Ubuntu
+- Bash
+- VS Code
+- Terminal
+
+## Progress
+
+This repository is updated regularly as I continue learning Linux and system fundamentals.

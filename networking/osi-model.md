@@ -1,41 +1,115 @@
-The OSI (Open Systems Interconnection) model is a universal, 7-layer conceptual framework created by the ISO. It standardizes how different computer systems and hardware interact and communicate over a network, breaking down data transmission into distinct, abstract stages to simplify design and troubleshooting.
-![alt text](image.png)
+# OSI Model (Open Systems Interconnection)
 
-Layer 1: The Physical Layer (2:00 - 3:42)
+The OSI model is a universal, 7-layer conceptual framework created by the ISO (International Organization for Standardization). It standardizes how different computer systems and hardware interact and communicate over a network, breaking down data transmission into distinct, abstract stages to simplify design and troubleshooting.
 
-    Goal: Transporting bits (ones and zeros) between devices.
-    Examples: Physical media like cables, wireless technology (Wi-Fi), and devices like repeaters and hubs are considered Layer 1 technologies as they extend or carry signals.
+![OSI Model Layers](image.png)
 
-Layer 2: The Data Link Layer (3:43 - 7:27)
+---
 
-    Goal: "Hop-to-hop" delivery; moving data between specific network interfaces.
-    Addressing: Uses MAC addresses, which are 48-bit unique identifiers for network interface cards (NICs).
-    Devices: Switches and NICs are considered Layer 2 technologies because they assist in the delivery of data across a single hop.
+## Table of Contents
+- [Layer 1: Physical Layer](#layer-1-physical-layer)
+- [Layer 2: Data Link Layer](#layer-2-data-link-layer)
+- [Layer 3: Network Layer](#layer-3-network-layer)
+- [Layer 4: Transport Layer](#layer-4-transport-layer)
+- [Layers 5-7: Session, Presentation, and Application](#layers-5-7-session-presentation-and-application)
+- [Key Concepts](#key-concepts)
 
-Layer 3: The Network Layer (7:38 - 12:08)
+---
 
-    Goal: "End-to-end" delivery; ensuring data reaches the target destination from the source.
-    Addressing: Uses IP addresses (32-bit addresses) to identify the specific end-host.
-    Devices: Routers function at Layer 3 to facilitate this end-to-end communication.
+## Layer 1: Physical Layer
 
-Key Concept: How Layers Work Together (8:48 - 11:24)
+**Goal:** Transporting bits (ones and zeros) between devices.
 
-    The video explains that data travels by wrapping the payload in Layer 3 information (IP addresses) for the full journey, while constantly adding and removing Layer 2 headers (MAC addresses) at each router hop to facilitate the physical transit.
-    The Address Resolution Protocol (ARP) is mentioned as the essential protocol that links Layer 3 IP addresses to Layer 2 MAC addresses (11:39 - 12:07).
+**Key Characteristics:**
+- Deals with the physical transmission of raw bit streams
+- Defines electrical, mechanical, and procedural specifications
 
-Layer 4: The Transport Layer (0:58 - 3:30)
+**Examples:**
+- Physical media: cables (Ethernet, fiber optic), wireless technology (Wi-Fi, radio waves)
+- Devices: repeaters and hubs (Layer 1 technologies that extend or carry signals)
 
-    Primary Goal: Service-to-service delivery. While Layer 3 (Network) handles end-to-end delivery (host-to-host) and Layer 2 (Data Link) handles hop-to-hop delivery, Layer 4 ensures data reaches the specific program (e.g., web browser, game, chat app) running on the host.
-    Mechanism: Uses ports to distinguish between multiple data streams running simultaneously on a computer.
-    Protocols:
-        TCP: Prioritizes reliability.
-        UDP: Prioritizes efficiency.
-    Port Addressing:
-        There are 65,535 possible ports for both TCP and UDP.
-        Server-side: Servers listen on predefined, "well-known" port numbers (e.g., HTTPS on 443, HTTP on 80, IRC on 6667).
-        Client-side: The client dynamically selects a random source port for each connection. This allows the client to handle multiple tabs or active programs without data streams overlapping.
+---
 
-Layers 5, 6, and 7: Session, Presentation, and Application (7:18 - 8:27)
+## Layer 2: Data Link Layer
 
-    Current State: The formal distinctions between these layers have become somewhat vague in modern practice.
-    Universal Application Layer: Because applications are free to implement these layers as they see fit, they are often grouped together as a single Application layer, mirroring the simplified structure of the TCP/IP model.
+**Goal:** "Hop-to-hop" delivery — moving data between specific network interfaces on the same local network.
+
+**Key Characteristics:**
+- **Addressing:** Uses MAC addresses (48-bit unique identifiers for network interface cards)
+- Provides error detection from physical layer
+- Handles frame synchronization
+
+**Devices:**
+- Switches and NICs (Layer 2 technologies that assist in data delivery across a single hop)
+
+---
+
+## Layer 3: Network Layer
+
+**Goal:** "End-to-end" delivery — ensuring data reaches the target destination from the source, potentially across multiple networks.
+
+**Key Characteristics:**
+- **Addressing:** Uses IP addresses (32-bit for IPv4) to identify specific end-hosts
+- Handles routing and forwarding
+- Manages fragmentation and reassembly
+
+**Devices:**
+- Routers (function at Layer 3 to facilitate end-to-end communication)
+
+---
+
+## Layer 4: Transport Layer
+
+**Primary Goal:** Service-to-service delivery — ensuring data reaches the specific program (e.g., web browser, game, chat app) running on the host.
+
+**Mechanism:**
+- Uses **ports** to distinguish between multiple data streams running simultaneously on a computer
+- Provides end-to-end communication services for applications
+
+**Protocols:**
+- **TCP (Transmission Control Protocol):** Prioritizes reliability
+  - Connection-oriented
+  - Guarantees delivery and order
+  - Error checking and recovery
+- **UDP (User Datagram Protocol):** Prioritizes efficiency
+  - Connectionless
+  - Faster but no delivery guarantees
+  - Used for real-time applications (video streaming, gaming)
+
+**Port Addressing:**
+- 65,535 possible ports for both TCP and UDP
+- **Server-side:** Servers listen on predefined "well-known" ports:
+  - HTTP: port 80
+  - HTTPS: port 443
+  - IRC: port 6667
+- **Client-side:** Client dynamically selects a random source port for each connection, allowing multiple tabs/programs without data stream overlap
+
+---
+
+## Layers 5-7: Session, Presentation, and Application
+
+**Current State:** The formal distinctions between these layers have become somewhat vague in modern practice.
+
+- **Layer 5 (Session):** Manages sessions/connections between applications
+- **Layer 6 (Presentation):** Data translation, encryption, and compression
+- **Layer 7 (Application):** Network services to applications (HTTP, FTP, SMTP)
+
+**Modern Practice:**
+Because applications are free to implement these layers as they see fit, they are often grouped together as a single **Application layer**, mirroring the simplified structure of the TCP/IP model.
+
+---
+
+## Key Concepts
+
+### How Layers Work Together
+
+Data travels by **encapsulation**:
+1. The payload is wrapped in Layer 3 information (IP addresses) for the full journey
+2. Layer 2 headers (MAC addresses) are constantly added and removed at each router hop to facilitate physical transit
+3. Each layer adds its own header to the data before passing it down
+
+### Address Resolution Protocol (ARP)
+
+- **Purpose:** Links Layer 3 IP addresses to Layer 2 MAC addresses
+- Essential for local network communication
+- See [Host Functioning](host-functioning.md) for detailed ARP process
